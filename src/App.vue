@@ -1,47 +1,39 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { reactive } from 'vue';
+
+const estado = reactive({
+  valorA: '',
+  valorB: '',
+  filtro: '',
+  resultado: '',
+})
+
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <div class="container">
+    <header class="p-5 mt-4 mb-4 bg-light rounded-4">
+      <h1>calculadora</h1>
+      <p>O resultado é {{ mostraResultado() }}</p>
+    </header>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+
+    <form>
+        <div>
+            <input :value="estado.valorA" @change="evento => estado.valorA = evento.target.value" required type="text" placeholder="Digite seu numero aqui" >
+            <div class="col-md-2">
+          <select @change="evento => estado.filtro = evento.target.value">
+            <option value="adicao">+</option>
+            <option value="subtracao">-</option>
+            <option value="multiplicacao">X</option>
+            <option value="divisao">÷</option>
+          </select>
+        </div>
+            <input :value="estado.valorB" @change="evento => estado.valorB = evento.target.value" required type="text" placeholder="Digite seu numero aqui">
     </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+    </form>
+</div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>
