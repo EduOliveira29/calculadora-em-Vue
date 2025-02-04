@@ -8,13 +8,30 @@ const estado = reactive({
   resultado: '',
 })
 
+const resulSoma = () => {
+  const { filtro } = estado;
+
+  switch (filtro) {
+    case 'adicao':
+      return +estado.valorA + +estado.valorB;
+    case 'subtracao':
+      return +estado.valorA - +estado.valorB;
+    case 'multiplicacao':
+      return +estado.valorA * +estado.valorB;
+    case 'divisao':
+      return +estado.valorA / +estado.valorB;
+    default:
+      return estado.tarefas;  
+  }
+}
+
 </script>
 
 <template>
   <div class="container">
     <header class="p-5 mt-4 mb-4 bg-light rounded-4">
       <h1>calculadora</h1>
-      <p>O resultado é {{ mostraResultado() }}</p>
+      <p>O resultado é {{ resulSoma() }}</p>
     </header>
 
 
